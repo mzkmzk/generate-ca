@@ -1,0 +1,18 @@
+{
+  "name": "generate-ca-serve",
+  "version": "1.0.0",
+  "description": "generate serve",
+  "main": "src/index.js",
+  "dependencies": {
+    "koa": "2.11.0"
+  },
+  "scripts": {
+    "build": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ca"
+  ],
+  "author": "maizhikun",
+  "license": "MIT"
+}
