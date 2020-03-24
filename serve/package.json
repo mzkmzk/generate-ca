@@ -4,15 +4,18 @@
   "description": "generate serve",
   "main": "src/index.js",
   "dependencies": {
-    "koa": "2.11.0"
+    "child-process-promise": "2.2.1",
+    "koa": "2.11.0",
+    "koa-router": "8.0.8"
   },
   "scripts": {
-    "build": "node src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "pm2-runtime start /code/src/index.js  --watch "
   },
   "keywords": [
     "ca"
   ],
+  "repository": "https://github.com/mzkmzk/generate-ca",
   "author": "maizhikun",
   "license": "MIT"
 }

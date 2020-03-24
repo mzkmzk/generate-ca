@@ -3,5 +3,8 @@ services:
   serve:
     build: ./serve
     # 端口映射
+    volumes: 
+      - ./serve/src:/code/src
+      - ./data:/data
     ports:
         - "3000:3000"
