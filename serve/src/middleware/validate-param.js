@@ -26,7 +26,7 @@ module.exports = async function (ctx, next, param){
       console.log('type', type)
       ruleCheckMap[type](key, value)
     }
-    
   }
   console.log('validate-param middleware end')
+  
 }

@@ -50,5 +50,4 @@ module.exports = async function (ctx, next) {
     msg: '',
     data: { name }
   }
-  //next()
 }
