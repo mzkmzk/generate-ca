@@ -50,4 +50,6 @@ module.exports = async function (ctx, next) {
     msg: '',
     data: { name }
   }
+
+  await next()
 }

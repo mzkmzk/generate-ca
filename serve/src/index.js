@@ -10,25 +10,18 @@ Sentry.init({ dsn: 'https://b5d2bff52b51452398dc7bfba2a6a301@sentry.404mzk.com/5
 
 router.get(
   '/generate-ca',
-  async (ctx, next) => {
-    console.log('validateParam')
-    await validateParam(ctx, next, {
-      rules: [ 
-        { key: 'dns0', descriptor: ['empty','dns'] }, 
-        { key: 'dns1', descriptor: ['dns'] }]
-    })
-     next()
-  }, 
-  /*(ctx, next) => {
-    queue(ctx, next, { 
-      key: 'generate-ca',
-      max: 1,
-      msg: '抱歉, 当前生成证书请求过多, 请稍候再试'
-    })
-  },*/ async (ctx, next) =>  {
-    console.log('generateCa')
+  validateParam({
+    rules: [ 
+      { key: 'dns0', descriptor: ['notEmpty','dns'] }, 
+      { key: 'dns1', descriptor: ['dns'] }
+    ]
+  }), 
+  queue({
+    key: 'generate-ca',
+    max: 5,
+    msg: '抱歉, 当前生成证书请求过多, 请稍候再试'
+  }), async (ctx, next) =>  {
     await generateCa(ctx, next)
-    await next()
   }
 )
 
@@ -40,7 +33,7 @@ app.use(async function(ctx, next){
   
   try {
     await next()
-  } catch(err){
+  } catch(err) {
     console.log('next catch err: ', err)
     ctx.body = { code: -1, msg: err.message }
     Sentry.captureException(err)
@@ -49,7 +42,6 @@ app.use(async function(ctx, next){
 
 // response
 app.use(router.routes(), router.allowedMethods())
-
 
 app.on('error', function(err, ctx) {
   console.log('app error', err)

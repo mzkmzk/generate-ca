@@ -1,5 +1,5 @@
 const ruleCheckMap = {
-  empty: function(key, value){
+  notEmpty: function(key, value){
     if (!value){
       throw new Error(`${key} 不能为空`)
     }
@@ -14,19 +14,20 @@ const ruleCheckMap = {
   }
 }
 
-module.exports = async function (ctx, next, param){
-  console.log('validate-param middleware start')
-  const { rules } = param
-  for (let index = 0; index < rules.length; index++) {
-    const { descriptor, key } = rules[index]
-    const value = ctx.query[key]
-    console.log('descriptor', descriptor)
-    for (let descriptorIndex = 0; descriptorIndex < descriptor.length; descriptorIndex++) {
-      const type = descriptor[descriptorIndex];
-      console.log('type', type)
-      ruleCheckMap[type](key, value)
+module.exports = function (param){
+  return async (ctx, next) => {
+    const { rules } = param
+    for (let index = 0; index < rules.length; index++) {
+      const { descriptor, key } = rules[index]
+      const value = ctx.query[key]
+      for (let descriptorIndex = 0; descriptorIndex < descriptor.length; descriptorIndex++) {
+        const type = descriptor[descriptorIndex];
+        ruleCheckMap[type](key, value)
+      }
     }
+    console.log('validate-param middleware end')
+    await next()
   }
-  console.log('validate-param middleware end')
+  
   
 }
