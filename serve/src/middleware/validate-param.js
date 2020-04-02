@@ -9,7 +9,7 @@ const ruleCheckMap = {
     if (!value){
 
     } else if (!(/^[a-zA-Z0-9\.\-\*]{5,50}$/.test(value))){
-      throw new Error(`${key} 不合法, 只允许字母数字以及-_.等字符`)
+      throw new Error(`${key} 不合法, 只允许字母数字以及-_.等字符, 长度要求5~50个字符`)
     }
   }
 }

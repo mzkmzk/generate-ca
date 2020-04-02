@@ -1,0 +1,32 @@
+{
+  "name": "front",
+  "version": "1.0.0",
+  "description": "generate-ca-front",
+  "author": "maizhikun",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
+    "build": "nuxt build",
+    "start": "cross-env NODE_ENV=production node server/index.js",
+    "generate": "nuxt generate",
+    "test": "jest"
+  },
+  "dependencies": {
+    "axios": "0.19.2",
+    "cross-env": "^5.2.0",
+    "element-ui": "^2.4.11",
+    "highlight.js": "9.18.1",
+    "koa": "^2.6.2",
+    "node-sass": "4.13.1",
+    "nuxt": "^2.0.0",
+    "sass-loader": "8.0.2",
+    "vue-highlight.js": "3.1.0"
+  },
+  "devDependencies": {
+    "@vue/test-utils": "^1.0.0-beta.27",
+    "babel-jest": "^24.1.0",
+    "jest": "^24.1.0",
+    "nodemon": "1.19.4",
+    "vue-jest": "^4.0.0-0"
+  }
+}
