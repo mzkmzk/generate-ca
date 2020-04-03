@@ -10,4 +10,4 @@ openssl ca -batch -config intermediate-ca.conf -notext -in ../enduser-certs/endu
 openssl ca -config intermediate-ca.conf -gencrl -keyfile intermediate1.key -cert intermediate1.crt -out intermediate1.crl.pem
 openssl crl -inform PEM -in intermediate1.crl.pem -outform DER -out intermediate1.crl
 
-cat ../root/rootca.crt intermediate1.crt > ../enduser-certs/enduser-example.com.chain
+cat ../enduser-certs/enduser-example.com.crt intermediate1.crt ../root/rootca.crt > ../enduser-certs/enduser-example.com.chain

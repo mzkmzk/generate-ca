@@ -48,7 +48,11 @@ module.exports = async function (ctx, next) {
   ctx.body = { 
     code: 0,
     msg: '',
-    data: { name }
+    data: {
+      rootCrt: `https://generate-ca-serve.404mzk.com/ca/${name}/root/rootca.crt`,
+      userChain: `https://generate-ca-serve.404mzk.com/ca/${name}/enduser-certs/enduser-example.com.chain`,
+      userKey: `https://generate-ca-serve.404mzk.com/ca/${name}/enduser-certs/enduser-example.com.key`
+    }
   }
 
   await next()
