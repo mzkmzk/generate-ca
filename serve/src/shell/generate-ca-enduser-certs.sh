@@ -4,6 +4,7 @@ openssl req \
   -subj /C=CN/ST=GUANGDONG/L=SHENZHEN/O=404MZK.COM/OU=404MZK.COM-CA/CN=404MZK.COM-Root-CA/emailAddress=mzk@404mzk.com \
   -new -sha256 -key enduser-example.com.key -out enduser-example.com.csr
 
+chmod 744 enduser-example.com.key
 cd ../intermediate1
 
 openssl ca -batch -config intermediate-ca.conf -notext -in ../enduser-certs/enduser-example.com.csr -out ../enduser-certs/enduser-example.com.crt

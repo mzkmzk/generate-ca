@@ -48,8 +48,8 @@
     listen          443 ssl;
     server_name     demo.404mzk.com;
     ...
-    ssl_certificate /var/www/ssl/demo-404mzk-com/chained.pem;
-    ssl_certificate_key /var/www/ssl/demo-404mzk-com/404mzk-com-private.key;
+    ssl_certificate /var/www/ssl/demo-404mzk-com/enduser-example.com.chain;
+    ssl_certificate_key /var/www/ssl/demo-404mzk-com/enduser-example.com.key;
   }
             </highlight-code>
           </div>
