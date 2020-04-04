@@ -1,17 +1,20 @@
 version: '3'
 services:
   serve:
-    build: ./serve
+    build: 
+      context: ./serve
     # 端口映射
     volumes: 
       - ./serve/src:/code/src
       - ./data:/data
     ports:
-        - "9100:3000"
+        - "8100:3000"
   front:
-    build: ./front
+    build: 
+      context: ./front
+      dockerfile: Dockerfile.dev
     volumes: 
       - ./front:/code
       - /code/node_modules/
     ports: 
-      - "9101:3000"
+      - "8101:3000"
