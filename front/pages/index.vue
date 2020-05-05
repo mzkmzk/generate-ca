@@ -39,7 +39,12 @@
     <div class="ca-setting">
       <h1 class="ca-setting-title">CA-Setting</h1>
       <ul class="ca-setting-setp">
-        <li><h3>1. 系统信任根证书</h3></li>
+        <li>
+          <h3>1. 系统信任根证书-rootca.crt
+            (
+              <a target="_blank" href="https://blog.csdn.net/xiuye2015/article/details/54599331">windows信任根证书教程</a>,
+              <a target="_blank" href="https://blog.csdn.net/LVXIANGAN/article/details/85273504">mac信任根证书教程</a>
+            )</h3></li>
         <li><h3 class="nginx-setting-title">2. Nginx Setting</h3></li>
         <li>
           <div class="nginx-setting-code">

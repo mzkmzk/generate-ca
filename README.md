@@ -12,7 +12,8 @@ docker-compose up --build
 
 # Venfidy
 
-http://localhsot:3000/generate-ca?dns0=*.xxx.com
+- dev-front: http://localhost:8101/
+- dev-serve: http://localhsot:8100/generate-ca?dns0=*.xxx.com
 
 # Reference Article
 
