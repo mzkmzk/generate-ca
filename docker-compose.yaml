@@ -14,7 +14,7 @@ services:
   front:
     << : *restart_policy
     build: ./front
-    volumes: 
+    #volumes: 
       #- ./front:/code
       #- /code/node_modules/
     ports: 
