@@ -95,7 +95,7 @@ const CA_NAME_KEY = 'CA_NAME_KEY'
 
 export default {
   head: {
-    title: 'Generate-CA'
+    title: 'Generate-CA(生成根证书)'
   },
   data () {
     return {
