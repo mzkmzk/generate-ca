@@ -60,8 +60,19 @@
           </div>
         </li>
       </ul>
+      <el-popover
 
+        title="微信扫一扫, 备注(generate-ca)"
+        placement="top-start"
+        width="260"
+        trigger="hover"
+        class="btn-feedback"
+        >
+        <el-avatar shape="square" :size="230" fit="cover" :src="wechatQrcode"></el-avatar>
+        <el-button slot="reference">联系客服</el-button>
+      </el-popover>
     </div>
+
   </div>
 
 </template>
@@ -77,6 +88,7 @@ import 'highlight.js/styles/atom-one-light.css'
 
 import { generaCa } from '../api/index'
 import nginx from 'highlight.js/lib/languages/nginx'
+import wechatQrcode from '~/assets/images/wechat-qrcode.jpg'
 
 Vue.use(ElementUI)
 Vue.use(VueHighlightJS, {
@@ -95,7 +107,10 @@ const CA_NAME_KEY = 'CA_NAME_KEY'
 
 export default {
   head: {
-    title: 'Generate-CA(生成根证书)'
+    title: 'Generate-CA(生成根证书)',
+    meta: [
+      { hid: 'description', name: 'description', content: 'Openssl, 本地证书, 在线生成证书'}
+    ]
   },
   data () {
     return {
@@ -103,7 +118,8 @@ export default {
       generateStatus: GENERATE_STATUS.INIT,
       errorMsg: '',
       GENERATE_STATUS,
-      caInfo: null
+      caInfo: null,
+      wechatQrcode
     }
   },
   mounted () {
