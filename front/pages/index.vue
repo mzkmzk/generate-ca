@@ -135,6 +135,11 @@ export default {
         this.generateStatus = GENERATE_STATUS.SUCCESS
         this.safeSetLocalStorage(CA_NAME_KEY, data)
         this.caInfo = data
+        this.$message({
+          showClose: true,
+          message: '生成证书成功!',
+          type: 'success'
+        });
       } else {
         this.generateStatus = GENERATE_STATUS.ERROR
         this.errorMsg = msg
