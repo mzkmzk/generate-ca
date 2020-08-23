@@ -39,7 +39,12 @@
     <div class="ca-setting">
       <h1 class="ca-setting-title">CA-Setting</h1>
       <ul class="ca-setting-setp">
-        <li><h3>1. 系统信任根证书</h3></li>
+        <li>
+          <h3>1. 系统信任根证书-rootca.crt
+            (
+              <a target="_blank" href="https://blog.csdn.net/xiuye2015/article/details/54599331">windows信任根证书教程</a>,
+              <a target="_blank" href="https://blog.csdn.net/LVXIANGAN/article/details/85273504">mac信任根证书教程</a>
+            )</h3></li>
         <li><h3 class="nginx-setting-title">2. Nginx Setting</h3></li>
         <li>
           <div class="nginx-setting-code">
@@ -55,8 +60,19 @@
           </div>
         </li>
       </ul>
+      <el-popover
 
+        title="微信扫一扫, 备注(generate-ca)"
+        placement="top-start"
+        width="260"
+        trigger="hover"
+        class="btn-feedback"
+        >
+        <el-avatar shape="square" :size="230" fit="cover" :src="wechatQrcode"></el-avatar>
+        <el-button slot="reference">联系客服</el-button>
+      </el-popover>
     </div>
+
   </div>
 
 </template>
@@ -72,6 +88,7 @@ import 'highlight.js/styles/atom-one-light.css'
 
 import { generaCa } from '../api/index'
 import nginx from 'highlight.js/lib/languages/nginx'
+import wechatQrcode from '~/assets/images/wechat-qrcode.jpg'
 
 Vue.use(ElementUI)
 Vue.use(VueHighlightJS, {
@@ -90,7 +107,10 @@ const CA_NAME_KEY = 'CA_NAME_KEY'
 
 export default {
   head: {
-    title: 'Generate-CA'
+    title: 'Generate-CA(生成根证书)',
+    meta: [
+      { hid: 'description', name: 'description', content: 'Openssl, 本地证书, 在线生成证书'}
+    ]
   },
   data () {
     return {
@@ -98,7 +118,8 @@ export default {
       generateStatus: GENERATE_STATUS.INIT,
       errorMsg: '',
       GENERATE_STATUS,
-      caInfo: null
+      caInfo: null,
+      wechatQrcode
     }
   },
   mounted () {
@@ -114,6 +135,11 @@ export default {
         this.generateStatus = GENERATE_STATUS.SUCCESS
         this.safeSetLocalStorage(CA_NAME_KEY, data)
         this.caInfo = data
+        this.$message({
+          showClose: true,
+          message: '生成证书成功!',
+          type: 'success'
+        });
       } else {
         this.generateStatus = GENERATE_STATUS.ERROR
         this.errorMsg = msg
