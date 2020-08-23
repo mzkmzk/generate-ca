@@ -3,6 +3,7 @@ x-restart-policy: &restart_policy
   restart: unless-stopped
 services:
   serve:
+    << : *restart_policy
     build: ./serve
     # 端口映射
     volumes: 
@@ -11,6 +12,7 @@ services:
     ports:
         - "9100:3000"
   front:
+    << : *restart_policy
     build: ./front
     volumes: 
       - ./front:/code
